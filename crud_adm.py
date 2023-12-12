@@ -1,3 +1,5 @@
+## AS ADMIN
+
 # Dummy data laundry
 laundry = [
     {"id": 1, "nama": "Quick Clean", "wilayah": "Bandung"},
