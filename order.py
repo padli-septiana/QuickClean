@@ -117,9 +117,8 @@ while True:
             print("|4. Hapus Order                 |")
             print("|5. Buat Pemesanan Laundry      |")
             print("|6. Tampilkan Pemesanan Laundry |")
-            print("|7. Selesaikan Pemesanan        |")
             print("|0. Kembali                     |")
-            print("================================")
+            print("=================================")
             
             pilihan = int(input("Masukkan pilihan: "))
             
