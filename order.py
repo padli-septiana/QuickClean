@@ -13,10 +13,19 @@ order = {}
 # Tabel Pemesanan Laundry
 pemesanan = {}
 
+def main_menu():
+    print("\n--- Laundry ---")
+    print("1. Pilih Laundry Menu")
+    print("2. Tampilkan Pemesanan Laundry")
+    print("0. Keluar")
+    pilih = input("\nMasukkan pilihan: ")
+    return pilih
+
 # Fungsi untuk menampilkan menu
 def tampilkan_menu():
-    print("Menu Laundry:")
-    print("==============")
+    print("============================")
+    print("|       Menu Laundry       |")
+    print("============================")
     for id, data in menu.items():
         print(f"{id}. {data['nama']} - Rp{data['harga']}")
 
@@ -65,14 +74,6 @@ def hapus_order():
     else:
         print("ID order tidak valid.")
 
-# Fungsi untuk membuat pemesanan laundry
-def buat_pemesanan():
-    nama_pelanggan = input("Masukkan nama pelanggan: ")
-    alamat_pelanggan = input("Masukkan alamat pelanggan: ")
-    pemesanan['nama_pelanggan'] = nama_pelanggan
-    pemesanan['alamat_pelanggan'] = alamat_pelanggan
-    pemesanan['order'] = order.copy()
-    print("Pemesanan berhasil dibuat!")
 
 # Fungsi untuk menampilkan pemesanan laundry
 def tampilkan_pemesanan():
@@ -82,37 +83,66 @@ def tampilkan_pemesanan():
     print(f"Alamat Pelanggan: {pemesanan['alamat_pelanggan']}")
     print("Order:")
     for id, data in pemesanan['order'].items():
-        print(f"{id}. {data['nama']} - Rp{data['harga']} x {data['jumlah']} = Rp{data['total_harga']}")
+        status = "Belum Dikerjakan"  # Menambah status pesanan default
 
+        # Ubah status jika pesanan sudah ada dalam pemesanan
+        if id in pemesanan['status']:
+            if pemesanan['status'][id]:
+                status = "Sudah Dikerjakan"
+
+        print(f"{id}. {data['nama']} - Rp{data['harga']} x {data['jumlah']} = Rp{data['total_harga']} ({status})")
+
+# Fungsi untuk membuat pemesanan laundry
+def buat_pemesanan():
+    nama_pelanggan = input("Masukkan nama pelanggan: ")
+    alamat_pelanggan = input("Masukkan alamat pelanggan: ")
+    pemesanan['nama_pelanggan'] = nama_pelanggan
+    pemesanan['alamat_pelanggan'] = alamat_pelanggan
+    pemesanan['order'] = order.copy()
+    pemesanan['status'] = {id: False for id in order}
+    print("Pemesanan berhasil dibuat!")
+    
 # Main program
 while True:
-    print("=================================")
-    print("|         QUICK CLEAN           |")
-    print("=================================")
-    print("|1. Buat Order Baru             |")
-    print("|2. Tampilkan Order             |")
-    print("|3. Update Order                |")
-    print("|4. Hapus Order                 |")
-    print("|5. Buat Pemesanan Laundry      |")
-    print("|6. Tampilkan Pemesanan Laundry |")
-    print("|0. Keluar                      |")
-    print("================================")
-    
-    pilihan = int(input("Masukkan pilihan: "))
-    
-    if pilihan == 1:
-        buat_order()
-    elif pilihan == 2:
-        tampilkan_order()
-    elif pilihan == 3:
-        update_order()
-    elif pilihan == 4:
-        hapus_order()
-    elif pilihan == 5:
-        buat_pemesanan()
-    elif pilihan == 6:
+    pilihan_utama = main_menu()
+        
+    if pilihan_utama == '1':
+        while True:
+            print("=================================")
+            print("|         QUICK CLEAN           |")
+            print("=================================")
+            print("|1. Buat Order Baru             |")
+            print("|2. Tampilkan Order             |")
+            print("|3. Update Order                |")
+            print("|4. Hapus Order                 |")
+            print("|5. Buat Pemesanan Laundry      |")
+            print("|6. Tampilkan Pemesanan Laundry |")
+            print("|7. Selesaikan Pemesanan        |")
+            print("|0. Kembali                     |")
+            print("================================")
+            
+            pilihan = int(input("Masukkan pilihan: "))
+            
+            if pilihan == 1:
+                buat_order()
+            elif pilihan == 2:
+                tampilkan_order()
+            elif pilihan == 3:
+                update_order()
+            elif pilihan == 4:
+                hapus_order()  
+            elif pilihan == 5:
+                buat_pemesanan()
+            elif pilihan == 6:
+                tampilkan_pemesanan()
+            elif pilihan == 0:
+                break
+            else:
+                print("Pilihan tidak valid. Silakan coba lagi.")
+        
+    elif pilihan_utama == '2':
         tampilkan_pemesanan()
-    elif pilihan == 0:
+    elif pilihan_utama == '0':
         break
     else:
-        print("Pilihan tidak valid. Silakan coba lagi.")
+        print("Pilihan tidak valid. silahkan coba lagi")
