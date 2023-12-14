@@ -118,11 +118,11 @@ def lihat_detail_paket_cuci(id_laundry, nama_paket):
 # TAMBAH PAKET CUCI
 def tambah_paket_cuci(id):
     print("\n>>> Masukkan Paket Laundry <<<")
-    id_laundry = len(paket_cuci) + 1
+    id_laundry = id
     nama_paket = input("Masukkan nama paket cuci => ")
     durasi = int(input("Masukkan durasi pengerjaan paket cuci (dalam hari) => "))
-    unit = str(input("Masukkan unit paket cuci (satuan/pasang/kg) => "))
-    harga = int(input("Masukkan harga paket cuci per unit => "))
+    unit = str(input("Masukkan unit paket cuci (pasang/kg) => "))
+    harga = int(input(f"Masukkan harga paket cuci per {unit} => "))
     
     paket_cuci.append({
         "id_laundry": id_laundry,
@@ -184,4 +184,3 @@ while True:
         break
 
     tampilkan_detail_laundry(id_laundry_pilihan)
-
