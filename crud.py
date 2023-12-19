@@ -24,8 +24,8 @@ def edit_data_laundry():
 def hapus_data():
     global data_laundry
 
-    input_hapus_data = input("Apakah anda ingin menghapus data laundry?")
-    if input_hapus_data == 'y':
+    input_hapus_data = input("Apakah anda ingin menghapus data laundry?(y/n)")
+    if input_hapus_data.lower() == 'y':
         data_laundry = {}
         print("\n DATA LAUNDRY TELAH DIHAPUS.")
     else:
