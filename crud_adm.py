@@ -79,6 +79,11 @@ def hapus_data_laundry(id_laundry):
     global laundry, paket_cuci
     laundry = [l for l in laundry if l['id'] != id_laundry]
     paket_cuci = [p for p in paket_cuci if p['id_laundry'] != id_laundry]
+    
+    # Perbarui nomor urutan setelah penghapusan
+    for i, l in enumerate(laundry):
+        l['id'] = i + 1
+
     print("=== Data Laundry berhasil dihapus beserta paket cuci yang terkait. ===")
 
 

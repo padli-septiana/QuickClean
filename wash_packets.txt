@@ -1,0 +1,1 @@
+{'id_laundry': 1, 'id': 1, 'nama_paket': 'paket hemat', 'durasi': '2 ', 'unit': 'kg', 'harga': 3000}
