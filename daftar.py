@@ -3,7 +3,7 @@ import csv
 data_laundries = []
 wash_packets = []
 
-def data_laundry():
+def laundries():
     print("\n>>> Masukkan Data Laundry <<<")
     id = len(data_laundries) + 1
     nama_laundry = input("Masukkan nama laundry => ")
@@ -62,7 +62,7 @@ def read_from_csv(filename):
 data_laundries = read_from_csv('data_laundries.csv')
 wash_packets = read_from_csv('wash_packets.csv')
 
-data_laundry()
+laundries()
 
 write_to_csv('data_laundries.csv', data_laundries)
 write_to_csv('wash_packets.csv', wash_packets)
