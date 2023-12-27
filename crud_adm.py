@@ -1,6 +1,7 @@
 ## AS ADMIN
 
 import csv
+import os
 
 # Dummy data laundry
 def read_laundries_from_csv():
@@ -97,15 +98,39 @@ def edit_data_laundry(id_laundry):
 # FUNCTION HAPUS DATA LAUNDRY
 def hapus_data_laundry(id_laundry):
     global laundry, paket_cuci
-    laundry = [l for l in laundry if l['id'] != id_laundry]
-    paket_cuci = [p for p in paket_cuci if p['id_laundry'] != id_laundry]
-    
-    # Perbarui nomor urutan setelah penghapusan
-    for i, l in enumerate(laundry):
-        l['id'] = i + 1
 
-    print("=== Data Laundry berhasil dihapus beserta paket cuci yang terkait. ===")
+    deleted_laundry = None
 
+    # Cari laundry yang akan dihapus
+    for l in laundry:
+        if l['id'] == id_laundry:
+            deleted_laundry = l
+            break
+
+    if deleted_laundry:
+        # Hapus data laundry
+        laundry = [l for l in laundry if l['id'] != id_laundry]
+
+        # Hapus paket_cuci yang terkait dengan laundry yang dihapus
+        paket_cuci = [p for p in paket_cuci if p['id_laundry'] != id_laundry]
+
+        # Perbarui nomor urutan setelah penghapusan
+        for i, l in enumerate(laundry):
+            l['id'] = i + 1
+
+        # Tulis ulang data laundry ke file CSV
+        write_laundries_to_csv()
+
+        # Hapus paket_cuci dari file wash_packets.csv
+        with open("files/wash_packets.csv", mode='w', newline='') as file:
+            fieldnames = ["id", "id_laundry", "nama", "durasi", "harga", "unit"]
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(paket_cuci)
+
+        print("=== Data Laundry berhasil dihapus beserta paket cuci yang terkait. ===")
+    else:
+        print("Laundry tidak ditemukan.")
 
 # FUNCTION <LIHAT PAKET CUCI> DARI PILIHAN MENU 
 def lihat_paket_cuci(id_laundry):
