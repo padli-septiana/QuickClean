@@ -8,7 +8,6 @@ def read_laundries_from_csv():
         with open("files/laundries.csv", mode='r', encoding='utf-8-sig') as file:
             reader = csv.DictReader(file)
             return list(reader)
-            # return [dict(row) for row in reader]
     except FileNotFoundError:
         return []
 
@@ -17,8 +16,8 @@ def write_laundries_to_csv():
         fieldnames = ["id", "nama", "wilayah"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(write_laundries_to_csv)
-
+        writer.writerows(laundry)
+        
 def read_pakets_from_csv():
     try:
         with open("files/wash_packets.csv", mode='r', encoding="utf-8-sig") as file:
@@ -29,11 +28,11 @@ def read_pakets_from_csv():
 
 def write_pakets_to_csv():
     with open("files/wash_packets.csv", mode='w', newline='') as file:
-        fieldnames = ["id_laundry", "nama_paket", "durasi", "harga", "unit"]
+        fieldnames = ["id", "id_laundry", "nama", "durasi", "harga", "unit"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(write_laundries_to_csv)
-
+        writer.writerows(paket_cuci)
+        
 laundry = read_laundries_from_csv()
 paket_cuci = read_pakets_from_csv()
 
@@ -144,21 +143,23 @@ def lihat_detail_paket_cuci(id_laundry, nama_paket):
 # TAMBAH PAKET CUCI
 def tambah_paket_cuci(id_laundry):
     print("\n>>> Masukkan Paket Laundry <<<")
-    id_laundry = id
-    nama_paket = input("Masukkan nama paket cuci => ")
+    id_laundry = id_laundry_pilihan
+    nama = input("Masukkan nama paket cuci => ")
     durasi = int(input("Masukkan durasi pengerjaan paket cuci (dalam hari) => "))
     unit = str(input("Masukkan unit paket cuci (pasang/kg) => "))
     harga = int(input(f"Masukkan harga paket cuci per {unit} => "))
     
+    new_id = max([int(paket['id']) for paket in paket_cuci]) + 1 if paket_cuci else 1  # Hitung ID terbaru
     paket_cuci.append({
+        "id": new_id,  # Gunakan ID terbaru
         "id_laundry": id_laundry,
-        "nama_paket": nama_paket,
+        "nama": nama,
         "durasi": durasi,
-        "harga": harga,
         "unit": unit,
+        "harga": harga,
     })
     
-    print(f"=== Paket Cuci {nama_paket} berhasil ditambahkan ===\n")
+    print(f"=== Paket Cuci {nama} berhasil ditambahkan ===\n")
     write_pakets_to_csv()  # Panggil fungsi ini setelah menambahkan paket cuci
 
 ### MENU EDIT DAN HAPUS PAKET CUCI <PAKET CUCI> MUNCUL APABILA DI AWAL SUDAH MEMILIH LAUNDRY YANG DITAMPILKAN ###
