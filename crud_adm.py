@@ -91,10 +91,17 @@ def edit_data_laundry(id_laundry):
         print("\n>> Edit Data Laundry: <<")
         selected_laundry['nama'] = input(f"Masukkan nama baru laundry ({selected_laundry['nama']}): ") or selected_laundry['nama']
         selected_laundry['wilayah'] = input(f"Masukkan wilayah baru ({selected_laundry['wilayah']}): ") or selected_laundry['wilayah']
+        
+        with open("files/laundries.csv", mode='w', newline='') as file:
+            fieldnames = ["id", "nama", "wilayah"]
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(laundry)
+            
         print("=== Data Laundry berhasil diubah. ===")
     else:
         print("Laundry tidak ditemukan.")
-
+    
 # FUNCTION HAPUS DATA LAUNDRY
 def hapus_data_laundry(id_laundry):
     global laundry, paket_cuci
