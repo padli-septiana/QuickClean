@@ -145,7 +145,7 @@ def lihat_paket_cuci(id_laundry):
     print("\n<< Paket Cuci: >>")
     for paket in pakets:
         if paket['id_laundry'] == id_laundry:
-            print(f'{paket["id"]}. {paket["nama"]} - Rp.{paket["harga"]}/{paket["unit"]}')
+            print(f'{paket["id"]}. {paket["nama_paket"]} - Rp.{paket["harga"]}/{paket["unit"]}')
 
     while True:
         pilihan_paket = input("--> Masukkan angka paket Laundry (0 untuk kembali): ")
@@ -155,7 +155,7 @@ def lihat_paket_cuci(id_laundry):
             pilihan_paket = int(pilihan_paket)
             if 1 <= pilihan_paket <= len(paket_cuci):
                 selected_paket = paket_cuci[pilihan_paket - 1]
-                lihat_detail_paket_cuci(id_laundry, selected_paket['nama'])
+                lihat_detail_paket_cuci(id_laundry, selected_paket['nama_paket'])
                 break
             else:
                 print("Pilihan tidak valid. Silakan masukkan angka yang benar.")
