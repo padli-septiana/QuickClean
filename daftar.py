@@ -67,12 +67,12 @@ def read_from_csv(filename):
     return data
 
 # Contoh penggunaan
-data_laundries = read_from_csv('data_laundries.csv')
-wash_packets = read_from_csv('wash_packets.csv')
+data_laundries = read_from_csv('files/laundries.csv')
+wash_packets = read_from_csv('files/wash_packets.csv')
 
 # Memanggil fungsi untuk memasukkan data laundry
 laundries()
 
 # Menyimpan data terbaru ke dalam file CSV setelah proses penginputan
-write_to_csv('data_laundries.csv', data_laundries)
-write_to_csv('wash_packets.csv', wash_packets)
+write_to_csv('files/laundries.csv', data_laundries)
+write_to_csv('files/wash_packets.csv', wash_packets)
