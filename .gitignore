@@ -1,0 +1,5 @@
+controllers/admin/__pycache__
+controllers/auth/__pycache__
+controllers/files/__pycache__
+controllers/laundry/__pycache__
+controllers/order/__pycache__
