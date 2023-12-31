@@ -1,0 +1,9 @@
+﻿id,id_laundry,nama,durasi,harga,unit
+1,1,Reguler,3,6000,kg
+2,1,Express,1,10000,kg
+3,2,Sepatu,3,15000,pasang
+4,2,Setelan,2,15000,setel
+5,2,Biasa,2,7500,kg
+6,2,Ngebut,1,9000,kg
+7,2,Sepatu,2,18000,pasang
+8,2,selimut,3,15000,pcs
