@@ -10,7 +10,6 @@ def startingPoint():
 
     while user is None or user is False:
         user = auth.menuLogin()
-
     while user != {}:
         if user['role'] == '3':
             print(f"Selamat Datang {auth.printRole(user)} {user['nama']}")
