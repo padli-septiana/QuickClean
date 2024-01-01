@@ -33,3 +33,10 @@ def get_max_id(filename):
         return max_id
     except (ValueError, IndexError):
         return 0
+    
+def check_username(username):
+    data_users = read_from_csv("users.csv")
+    for data_user in data_users:
+        if data_user['username'] == username:
+            return True
+    return False

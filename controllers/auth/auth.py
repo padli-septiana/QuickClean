@@ -13,22 +13,35 @@ def login():
     print("Username atau Password salah\n")
     return False
 
+
 def regist():
     print("\nRegister")
     id = fl.get_max_id("users.csv") + 1
     nama = input("Nama : ")
-    username = input("Username : ")
+
+    while True:
+        username = input("Username : ")
+        if username.isalnum() == False:
+            print("Username hanya boleh huruf dan angka")
+        elif username == "":
+            print("Username tidak boleh kosong")
+        elif fl.check_username(username):
+            print("Username sudah digunakan")
+        else:
+            break
+        
     password = input("Password : ")
     data_user = {
         "id": id,
         "nama": nama,
         "username": username,
         "password": password,
-        "role": 1,
+        "role": '1',
     }
     data_users.append(data_user)
     fl.write_to_csv("users.csv", data_users)
     print("Registrasi Berhasil\n")
+    return data_user
 
 def printRole(user):
     if user['role'] == '1':
@@ -48,8 +61,7 @@ def menuLogin():
     if pilihan == "1":
         return login()
     elif pilihan == "2":
-        regist()
-        menuLogin()
+        return regist()
     elif pilihan == "0":
         exit()
     else:
