@@ -23,6 +23,8 @@ def regist():
         username = input("Username : ")
         if username.isalnum() == False:
             print("Username hanya boleh huruf dan angka")
+        elif username == "":
+            print("Username tidak boleh kosong")
         elif fl.check_username(username):
             print("Username sudah digunakan")
         else:
