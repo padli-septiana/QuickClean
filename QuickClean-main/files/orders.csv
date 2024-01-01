@@ -1,0 +1,2 @@
+﻿id,id_user,isPaid,paymentMethod,alamat,tgl_pengambilan,tgl_pengantaran,status
+1,4,True,Qris,cibiru,01-01-2024,04-01-2024,Selesai
