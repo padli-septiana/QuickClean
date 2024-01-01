@@ -9,7 +9,6 @@ def laundries(id_user):
     id = max([int(laundry['id']) for laundry in data_laundries]) + 1 if data_laundries else 1  # Hitung ID terbaru
     nama_laundry = input("Masukkan nama laundry => ")
     wilayah_laundry = input("Masukkan wilayah laundry => ")
-    id_user = id_user
 
     # Membuat objek dictionary untuk data laundry
     laundry = {
@@ -25,8 +24,8 @@ def laundries(id_user):
     # Mengubah role user
     users = fl.read_from_csv("users.csv")
     for user in users:
-        if user['id'] == id_user:
-            user['role'] = '2'
+        if str(user['id']) == str(id_user):
+            (user['role']) = '2'
     fl.write_to_csv("laundries.csv", data_laundries)
     fl.write_to_csv("users.csv", users)
     print(f"=== Laundry {nama_laundry} berhasil terdaftar ===\n")

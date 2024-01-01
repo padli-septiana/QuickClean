@@ -32,6 +32,8 @@ def startingPoint():
                 od.menu(user['id'])
             elif mainMenu == "2":
                 df.laundries(user['id'])
+                print("Silahkan login ulang")
+                break
             else:
                 user = {}
                 print("Berhasil keluar\n")
