@@ -53,13 +53,16 @@ def menu(user_id):
     print("0. Kembali")
     print("1. Cuci sekarang")
     print("2. Lihat riwayat")
-    menu = input("Masukkan menu: ")
-    if menu == '1':
+    menuInput = input("Masukkan menu: ")
+    if menuInput == '1':
         for laundry in laundries:
             print(f"{laundry['id']}. {laundry['nama']} - {laundry['wilayah']}")
         selectLaundry = input("Pilih laundry: ")
-        order(selectLaundry, user_id)
-    elif menu == '2':
+        if selectLaundry == '0' or selectLaundry == '':
+            menu(user_id)
+        else:
+            order(selectLaundry, user_id)
+    elif menuInput == '2':
         history(user_id)
 
 def order(id_laundry, id_user):

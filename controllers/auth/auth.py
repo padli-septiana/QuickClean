@@ -41,7 +41,7 @@ def regist():
     data_users.append(data_user)
     fl.write_to_csv("users.csv", data_users)
     print("Registrasi Berhasil\n")
-    return data_user
+    exit()
 
 def printRole(user):
     if user['role'] == '1':
