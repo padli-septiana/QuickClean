@@ -207,7 +207,7 @@ def hapus_paket_cuci(id_laundry, id_paket):
 def menuAdmin():
     tampilkan_nama_laundry()
     id_laundry_pilihan = input("-> Masukkan angka Laundry yang ingin dilihat (0 untuk keluar): ")
-    print(id_laundry_pilihan, type(id_laundry_pilihan))
+    print(id_laundry_pilihan, type(str(id_laundry_pilihan)))
     if id_laundry_pilihan == '0' or id_laundry_pilihan == '':
         print('')
     else:

@@ -237,5 +237,8 @@ def main(id_user):
             hapus_paket(id_laundry, id_user)
         elif pilihan == "7":
             order.lihatOrder(id_laundry)
+        elif pilihan == "8":
+            exit()
         else:
+            print("Pilihan tidak valid!")
             break

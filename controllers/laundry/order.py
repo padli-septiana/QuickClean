@@ -2,13 +2,14 @@ import csv
 from ..files import files as fl
 from ..order import order as od
 
-
+#untuk mengambil nama user berdasarkan id_user
 def getUserNameById(id_user):
     users = fl.read_from_csv("users.csv")
     for user in users:
         if user['id'] == str(id_user):
             return user['nama']
 
+#untuk mengambil data laundry berdasarkan id_order
 def getLaundryFromOrder(id_order):
     orderItems = fl.read_from_csv("order_items.csv")
     washPackets = fl.read_from_csv("wash_packets.csv")
